@@ -11,11 +11,18 @@
 body {
 	font-family: 'Oswald', serif;
 	font-size: 48px;
+	text-align: center;
 }
 </style>
 </head>
 <body>
-	${quote_string}
 
-</body>
+	${quote_string}
+	<br>
+	<p style="font-size:22px">
+	- ${quote_character} 
+	</p>
+	
+	
+	</body>
 </html>
