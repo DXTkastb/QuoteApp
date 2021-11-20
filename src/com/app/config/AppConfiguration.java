@@ -3,6 +3,7 @@ package com.app.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -23,7 +24,7 @@ public class AppConfiguration implements WebMvcConfigurer{
 		
 		
 		urlbasedviewresolver.setViewClass(JstlView.class);
-		urlbasedviewresolver.setPrefix("WEB-INF/views");
+		urlbasedviewresolver.setPrefix("WEB-INF/views/");
 		urlbasedviewresolver.setSuffix(".jsp");
 				
 		return urlbasedviewresolver;
@@ -33,6 +34,13 @@ public class AppConfiguration implements WebMvcConfigurer{
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/").setViewName("homepage");
+	}
+	
+	@Bean
+	public RestTemplate resttemplate() {
+		
+		return new RestTemplate();
+		
 	}
 	
 	
