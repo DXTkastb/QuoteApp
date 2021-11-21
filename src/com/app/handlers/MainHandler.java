@@ -7,25 +7,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.quote.Quote;
 
 import java.net.*;
+import java.util.Random;
 
 @RequestMapping("/")
 @Controller
 public class MainHandler {
 	
-	
 	@Autowired
 	private RestTemplate restemplate;
 	
+	public static final int[] ary= {1,2,3,4,5};
 	public static final URI uRI;
-	public static final String PHOTO_APIKEY="563492ad6f917000010000013e5ebb7c91fa4c36a68477a4627c35c0";
-	public static final String FONT_API="AIzaSyCHg0vrZ4OVk8YT6QQHtz4xuphUjW8ZhOY";
-	
 	
 	static
 	{ 
@@ -48,19 +47,18 @@ public class MainHandler {
 		
 		ModelAndView modelview=new ModelAndView();
 		
-		ResponseEntity<Quote> response=getQuote();
-		
-		
-		if(response.getStatusCode().compareTo(HttpStatus.OK)==0) {
+		ResponseEntity<Quote> response = getQuote();
+
+		if (response.getStatusCode().compareTo(HttpStatus.OK) == 0) {
+			int x = new Random().nextInt(ary.length);
 			modelview.setStatus(response.getStatusCode());
 			modelview.setViewName("quote");
-			modelview.addObject("quote_string",response.getBody().getQuote());
-			modelview.addObject("quote_character",response.getBody().getCharacter());
-
-		}
-		else
+			modelview.addObject("quote_string", response.getBody().getQuote());
+			modelview.addObject("quote_character", response.getBody().getCharacter());
+			modelview.addObject("random", ary[x]);
+		} else
 			modelview.setViewName("noquote");
-			
+		
 			return modelview;
 		
 	}
@@ -82,11 +80,6 @@ public class MainHandler {
 		}
 		return response;
 	}
-	
-	
-	
-
-	
 	
 	
 }
