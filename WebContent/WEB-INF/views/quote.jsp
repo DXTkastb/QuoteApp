@@ -18,7 +18,7 @@ body {
 	font-size: 40px;
 	color: white;
 	background:
-		url('${pageContext.request.contextPath}/resources/p${random}.jpg');
+		url('${getmore_link}');
 	background-repeat: no-repeat;
 	background-size: cover;
 }

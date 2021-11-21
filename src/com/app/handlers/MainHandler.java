@@ -16,6 +16,8 @@ import com.app.quote.Quote;
 import java.net.*;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RequestMapping("/")
 @Controller
 public class MainHandler {
@@ -43,19 +45,22 @@ public class MainHandler {
 	
 	
 	@GetMapping(value="/getquote")
-	public ModelAndView handlerMethod1() {
+	public ModelAndView handlerMethod1(HttpServletRequest request) {
 		
 		ModelAndView modelview=new ModelAndView();
 		
 		ResponseEntity<Quote> response = getQuote();
+		
+		int x = new Random().nextInt(ary.length);
+		String moreLink= request.getContextPath()+"/resources/p"+x+".jpg";
+
 
 		if (response.getStatusCode().compareTo(HttpStatus.OK) == 0) {
-			int x = new Random().nextInt(ary.length);
 			modelview.setStatus(response.getStatusCode());
 			modelview.setViewName("quote");
 			modelview.addObject("quote_string", response.getBody().getQuote());
 			modelview.addObject("quote_character", response.getBody().getCharacter());
-			modelview.addObject("random", ary[x]);
+			modelview.addObject("getmore_link",moreLink);
 		} else
 			modelview.setViewName("noquote");
 		
