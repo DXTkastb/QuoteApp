@@ -1,11 +1,14 @@
 # QuoteApp
-## Web App for Anime Quotes
 
-  **-Displays Random Anime Character Quotes**
+### Web App for Anime Quotes
 
-  **-Consumes https://animechan.vercel.app/ for quotations**
 
-  **-Consumes https://fonts.googleapis.com/css for fonts**
+
+  - Displays Random Anime Character Quotes
+
+  - Consumes https://animechan.vercel.app/ for quotations
+
+  - Consumes https://fonts.googleapis.com/css for fonts
 
 -----------------------------------------------------------------------------------
 
